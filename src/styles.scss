@@ -6,9 +6,9 @@ body {
   font-size: $font-size;
 }
 
-// hr {
-//   border: 0.1px solid $line-color;
-// }
+hr {
+  border: 0.1px solid $line-color;
+}
 
 @font-face {
   font-family: "highlight";
@@ -18,4 +18,36 @@ body {
 .app-text-high-light {
   font-family: "highlight";
   letter-spacing: 0.25rem;
+}
+
+.p-button-primary {
+  background: $background-primary-color !important;
+}
+
+.p-button.big-button {
+  min-width: 16rem;
+  min-height: 5rem;
+  font-weight: bold;
+  font-size: 1.3rem;
+}
+
+.app-born-animation {
+  animation: born 0.4s;
+}
+
+@keyframes born {
+  from {
+    transform: translateY(-7rem);
+    opacity: 0;
+  }
+}
+
+.p-datatable-thead tr th {
+  background: rgba(255, 255, 255, 0.384) !important;
+}
+.p-datatable .p-datatable-tbody > tr {
+  background: rgba(255, 255, 255, 0.377) !important;
+}
+.p-paginator {
+  background: rgba(255, 255, 255, 0.932) !important;
 }

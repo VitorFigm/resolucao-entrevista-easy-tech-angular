@@ -4,12 +4,22 @@
   width: 100%;
   min-height: calc(100vh - #{$header-size});
 
+  background-image: url("/assets/images/open-source-image.svg");
+
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  overflow-y: hidden;
+
+  overflow-x: hidden;
+
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 2rem;
-}
 
-.local-container * {
-  flex: 1;
+  .item {
+    flex: 1;
+    height: 100%;
+  }
 }

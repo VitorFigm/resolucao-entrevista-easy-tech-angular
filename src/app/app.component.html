@@ -1,9 +1,27 @@
 <app-header title="Disney Movies"></app-header>
-
 <main class="local-container">
-  <app-table
-    *ngIf="moviesService.movies$ | async as movies"
-    [value]="movies"
-    [headers]="(tableHeaders$ | async) || []"
-  ></app-table>
+  <div class="item app-born-animation" *ngIf="view === 'landing'">
+    <app-landing-page (clickButton)="changeView()"></app-landing-page>
+  </div>
+  <div class="item app-born-animation" *ngIf="view === 'table'">
+    <ng-container *ngTemplateOutlet="closeButton"></ng-container>
+    <app-table
+      *ngIf="moviesService.movies$ | async as movies"
+      [value]="movies"
+      [headers]="(tableHeaders$ | async) || []"
+    ></app-table>
+  </div>
 </main>
+
+<ng-template #closeButton>
+  <div class="flex justify-content-end">
+    <button
+      pButton
+      pRipple
+      type="button"
+      icon="pi pi-times"
+      class="p-button-rounded p-button-text p-button-plain p-button-danger"
+      (click)="changeView()"
+    ></button>
+  </div>
+</ng-template>

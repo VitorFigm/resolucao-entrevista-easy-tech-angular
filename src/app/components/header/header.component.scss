@@ -3,9 +3,9 @@
 .local-header {
   width: 100%;
   height: $header-size;
-  background-color: $background-primary-color;
-  color: $text-secundary-color;
-  justify-content: center;
+  color: $background-primary-color;
+  justify-content: start;
+  padding-left: 2rem;
   display: flex;
   font-size: $font-size-big;
   align-items: center;

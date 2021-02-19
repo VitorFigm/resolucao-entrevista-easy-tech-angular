@@ -14,6 +14,8 @@ import { Observable } from 'rxjs';
 export class AppComponent {
   title = 'resolucao-easy-tech';
 
+  view: 'table' | 'landing' = 'landing';
+
   tableHeaders$ = this.getTableHeaders();
 
   constructor(public moviesService: MoviesService) {}
@@ -40,5 +42,16 @@ export class AppComponent {
     };
 
     return this.moviesService.movies$.pipe(map(parseMovie));
+  }
+
+  changeView() {
+    switch (this.view) {
+      case 'landing':
+        this.view = 'table';
+        break;
+      case 'table':
+        this.view = 'landing';
+        break;
+    }
   }
 }
