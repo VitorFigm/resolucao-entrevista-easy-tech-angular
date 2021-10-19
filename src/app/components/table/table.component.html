@@ -2,20 +2,29 @@
   [value]="value || []"
   responsiveLayout="scroll"
   [paginator]="true"
-  [rows]="5"
+  [rows]="10"
 >
   <ng-template pTemplate="header">
     <tr>
       <th *ngFor="let header of headers">
-        <div class="flex justify-content-center">{{ header }}</div>
+        <div class="flex justify-content-center">{{ header.title }}</div>
       </th>
     </tr>
   </ng-template>
   <ng-template pTemplate="body" let-row>
     <tr>
-      <td *ngFor="let key of valueKeys">
-        <div class="flex justify-content-center">{{ row[key] }}</div>
-      </td>
+      <ng-container *ngFor="let header of headers">
+        <!-- <div class="p-column-title" style="width: 100%">
+        <span>{{ header }}</span>
+        <hr />
+      </div> -->
+
+        <td>
+          <div class="flex justify-content-center">
+            {{ row[header.keyName] }}
+          </div>
+        </td>
+      </ng-container>
     </tr>
   </ng-template>
 </p-table>

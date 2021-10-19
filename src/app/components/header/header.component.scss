@@ -2,7 +2,7 @@
 
 .local-header {
   width: 100%;
-  height: calc(3 * #{$font-size-big});
+  height: $header-size;
   background-color: $background-primary-color;
   color: $text-secundary-color;
   justify-content: center;

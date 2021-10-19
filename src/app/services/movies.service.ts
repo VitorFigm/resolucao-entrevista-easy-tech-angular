@@ -1,11 +1,10 @@
-import { Movie } from './../models/index';
+import { MovieDTO, Movie } from './../models/index';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import moviesData from '../data/kaggle-disney-movies.json';
 
-type MovieDTO = Partial<Movie> | undefined;
 @Injectable({
   providedIn: 'root',
 })
@@ -15,12 +14,18 @@ export class MoviesService {
   constructor() {}
 
   private getMovies(): Observable<Movie[]> {
-    return of(moviesData).pipe(
-      map((movies) => movies.filter(this.validateMovie.bind(this)))
-    );
+    return of(moviesData).pipe(map(this.parseMovies.bind(this)));
   }
 
-  private validateMovie(movie: MovieDTO): movie is Movie {
+  private parseMovies(movies: unknown[]) {
+    return movies.flatMap((movie) => {
+      return this.validateMovie(movie)
+        ? this.deleteUnusedProperties(movie)
+        : [];
+    });
+  }
+
+  private validateMovie(movie: any): movie is Movie {
     return (
       Boolean(movie) &&
       Boolean(movie?.movie_title) &&
@@ -30,5 +35,16 @@ export class MoviesService {
       Boolean(movie?.release_date) &&
       typeof movie?.release_date === 'string'
     );
+  }
+
+  private deleteUnusedProperties(movie: Movie) {
+    const usedKyes: (keyof Movie)[] = ['genre', 'movie_title', 'release_date'];
+    const entries = Object.entries(movie);
+
+    const filteredEntries = entries.filter(([key]) =>
+      usedKyes.includes(key as keyof Movie)
+    );
+
+    return Object.fromEntries(filteredEntries) as Movie;
   }
 }

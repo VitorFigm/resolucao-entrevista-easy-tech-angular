@@ -1,0 +1,15 @@
+@import "/src/app/theme/variables.scss";
+
+.local-container {
+  width: 100%;
+  min-height: calc(100vh - #{$header-size});
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+}
+
+.local-container * {
+  flex: 1;
+}

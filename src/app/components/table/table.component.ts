@@ -1,5 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 
+export type Header<T> = { title: string; keyName: keyof T };
+
 @Component({
   selector: 'app-table',
   templateUrl: './table.component.html',
@@ -7,8 +9,7 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class TableComponent<T> implements OnInit {
   @Input() value: T[];
-  @Input() headers: string[];
-  @Input() valueKeys: (keyof T)[];
+  @Input() headers: Header<T>[];
 
   constructor() {}
 
