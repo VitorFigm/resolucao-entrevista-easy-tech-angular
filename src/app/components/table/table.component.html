@@ -1,6 +1,7 @@
 <p-table
   [value]="value || []"
-  responsiveLayout="scroll"
+  [responsive]="true"
+  styleClass="p-datatable-striped"
   [paginator]="true"
   [rows]="10"
 >
@@ -13,18 +14,14 @@
   </ng-template>
   <ng-template pTemplate="body" let-row>
     <tr>
-      <ng-container *ngFor="let header of headers">
-        <!-- <div class="p-column-title" style="width: 100%">
-        <span>{{ header }}</span>
-        <hr />
-      </div> -->
-
-        <td>
-          <div class="flex justify-content-center">
-            {{ row[header.keyName] }}
-          </div>
-        </td>
-      </ng-container>
+      <td *ngFor="let header of headers">
+        <div class="p-column-title">
+          <span style="font-weight: bold">{{ header.title }}:</span>
+        </div>
+        <div style="text-align: center">
+          {{ row[header.keyName] }}
+        </div>
+      </td>
     </tr>
   </ng-template>
 </p-table>

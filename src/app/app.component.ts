@@ -14,11 +14,11 @@ import { Observable } from 'rxjs';
 export class AppComponent {
   title = 'resolucao-easy-tech';
 
-  tableHeaders$: Observable<Header<Movie>[]> = this.getTableHeaders();
+  tableHeaders$ = this.getTableHeaders();
 
   constructor(public moviesService: MoviesService) {}
 
-  getTableHeaders() {
+  getTableHeaders(): Observable<Header<Movie>[]> {
     type Key = keyof Partial<Movie>;
     type KeyMap = { [key in Key]: string };
 
