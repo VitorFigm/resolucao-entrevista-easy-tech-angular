@@ -10,7 +10,7 @@ type MovieDTO = Partial<Movie> | undefined;
   providedIn: 'root',
 })
 export class MoviesService {
-  movies$: Observable<MovieDTO[]> = this.getMovies();
+  movies$ = this.getMovies();
 
   constructor() {}
 
@@ -21,8 +21,6 @@ export class MoviesService {
   }
 
   private validateMovie(movie: MovieDTO): movie is Movie {
-    console.log(typeof movie?.genre === 'string');
-
     return (
       Boolean(movie) &&
       Boolean(movie?.movie_title) &&

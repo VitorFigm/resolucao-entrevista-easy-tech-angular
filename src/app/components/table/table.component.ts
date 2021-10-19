@@ -1,0 +1,16 @@
+import { Component, Input, OnInit } from '@angular/core';
+
+@Component({
+  selector: 'app-table',
+  templateUrl: './table.component.html',
+  styleUrls: ['./table.component.scss'],
+})
+export class TableComponent<T> implements OnInit {
+  @Input() value: T[];
+  @Input() headers: string[];
+  @Input() valueKeys: (keyof T)[];
+
+  constructor() {}
+
+  ngOnInit(): void {}
+}
