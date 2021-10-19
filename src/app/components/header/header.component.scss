@@ -1,0 +1,17 @@
+@import "/src/app/theme/variables.scss";
+
+.local-header {
+  width: 100%;
+  height: calc(3 * #{$font-size-big});
+  background-color: $background-primary-color;
+  color: $text-secundary-color;
+  justify-content: center;
+  display: flex;
+  font-size: $font-size-big;
+  align-items: center;
+
+  .icon {
+    font-size: $font-size-big;
+    margin-right: 1rem;
+  }
+}

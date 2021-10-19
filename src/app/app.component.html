@@ -1,6 +1,6 @@
-<div></div>
+<app-header title="Disney Movies"></app-header>
 
-<div class="local-table-container">
+<div class="mt-5">
   <app-table
     *ngIf="moviesService.movies$ | async as movies"
     [value]="movies"
