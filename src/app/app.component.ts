@@ -19,30 +19,13 @@ export class AppComponent {
 
   view: 'table' | 'landing' = 'landing';
 
-  keyToLabelMap: KeyMap = {
-    movie_title: 'Title',
-    genre: 'Genre',
-    release_date: 'Release Date',
-  };
-
-  tableHeaders$ = this.getTableHeaders();
+  tableHeaders: Header<Movie>[] = [
+    { keyName: 'movie_title', title: 'Title' },
+    { keyName: 'genre', title: 'Genre' },
+    { keyName: 'release_date', title: 'Release Date' },
+  ];
 
   constructor(public moviesService: MoviesService) {}
-
-  getTableHeaders(): Observable<Header<Movie>[]> {
-    const parseMovie = (movies: Movie[]) => {
-      const keys = Object.keys(movies[0]) as Key[];
-
-      return keys.map((key) => {
-        return {
-          title: this.keyToLabelMap[key],
-          keyName: key,
-        };
-      });
-    };
-
-    return this.moviesService.movies$.pipe(map(parseMovie));
-  }
 
   changeView() {
     switch (this.view) {

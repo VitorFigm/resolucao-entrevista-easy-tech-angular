@@ -8,7 +8,7 @@
     <app-table
       *ngIf="moviesService.movies$ | async as movies"
       [value]="movies"
-      [headers]="(tableHeaders$ | async) || []"
+      [headers]="tableHeaders"
     ></app-table>
   </div>
 </main>
