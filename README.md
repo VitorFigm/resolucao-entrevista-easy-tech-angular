@@ -1,4 +1,4 @@
-# Resolução da questão 13 e 14 da prova da easy-invest
+# Resolução da questão 13 e 14 da prova da easy-tech
 
 # [ 👁️ Click Aqui para ver como ficou](https://vitorfigm.github.io/resolucao-entrevista-easy-tech-angular/)
 ## 💬 Observações
