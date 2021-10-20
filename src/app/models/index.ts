@@ -7,6 +7,10 @@ export type MovieDTO = {
   inflation_adjusted_gross: string;
 };
 
+export abstract class MovieDTOJson {
+  data: Partial<MovieDTO>[];
+}
+
 export type Movie = {
   movie_title: string;
   release_date: string;

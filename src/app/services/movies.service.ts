@@ -1,9 +1,7 @@
-import { MovieDTO, Movie } from './../models/index';
+import { MovieDTO, Movie, MovieDTOJson } from './../models/index';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
-
-import moviesData from '../data/kaggle-disney-movies.json';
 
 @Injectable({
   providedIn: 'root',
@@ -11,10 +9,10 @@ import moviesData from '../data/kaggle-disney-movies.json';
 export class MoviesService {
   movies$ = this.getMovies();
 
-  constructor() {}
+  constructor(private moviesDataDto: MovieDTOJson) {}
 
   private getMovies(): Observable<Movie[]> {
-    return of(moviesData).pipe(map(this.parseMovies.bind(this)));
+    return of(this.moviesDataDto.data).pipe(map(this.parseMovies.bind(this)));
   }
 
   private parseMovies(movies: unknown[]) {

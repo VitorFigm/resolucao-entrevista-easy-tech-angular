@@ -8,6 +8,9 @@ import { AppComponent } from './app.component';
 import { TableComponent } from './components/table/table.component';
 import { HeaderComponent } from './components/header/header.component';
 import { LandingPageComponent } from './components/landing-page/landing-page.component';
+import moviesData from './data/json/kaggle-disney-movies.json';
+import { MovieDTOJson } from './models';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -16,7 +19,7 @@ import { LandingPageComponent } from './components/landing-page/landing-page.com
     LandingPageComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, SharedModule],
-  providers: [],
+  providers: [{ provide: MovieDTOJson, useValue: { data: moviesData } }],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

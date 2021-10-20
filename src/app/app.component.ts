@@ -6,6 +6,9 @@ import { MoviesService } from './services/movies.service';
 import { Header } from './components/table/table.component';
 import { Observable } from 'rxjs';
 
+type Key = keyof Partial<Movie>;
+type KeyMap = { [key in Key]: string };
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -16,26 +19,23 @@ export class AppComponent {
 
   view: 'table' | 'landing' = 'landing';
 
+  keyToLabelMap: KeyMap = {
+    movie_title: 'Title',
+    genre: 'Genre',
+    release_date: 'Release Date',
+  };
+
   tableHeaders$ = this.getTableHeaders();
 
   constructor(public moviesService: MoviesService) {}
 
   getTableHeaders(): Observable<Header<Movie>[]> {
-    type Key = keyof Partial<Movie>;
-    type KeyMap = { [key in Key]: string };
-
     const parseMovie = (movies: Movie[]) => {
-      const map: KeyMap = {
-        movie_title: 'Title',
-        genre: 'Genre',
-        release_date: 'Release Date',
-      };
-
       const keys = Object.keys(movies[0]) as Key[];
 
       return keys.map((key) => {
         return {
-          title: map[key],
+          title: this.keyToLabelMap[key],
           keyName: key,
         };
       });
