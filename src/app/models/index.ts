@@ -1,3 +1,5 @@
+import { Observable } from "rxjs";
+
 export type MovieDTO = {
   movie_title: string;
   release_date: string;
@@ -8,7 +10,7 @@ export type MovieDTO = {
 };
 
 export abstract class MovieDTOJson {
-  data: Partial<MovieDTO>[];
+  data$: Observable<Partial<MovieDTO>[]>;
 }
 
 export type Movie = {

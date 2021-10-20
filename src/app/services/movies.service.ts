@@ -1,19 +1,14 @@
-import { MovieDTO, Movie, MovieDTOJson } from './../models/index';
+import { Movie, MovieDTOJson } from './../models/index';
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
 })
 export class MoviesService {
-  movies$ = this.getMovies();
+  movies$ = this.moviesDataDto.data$.pipe(map(this.parseMovies.bind(this)));
 
   constructor(private moviesDataDto: MovieDTOJson) {}
-
-  private getMovies(): Observable<Movie[]> {
-    return of(this.moviesDataDto.data).pipe(map(this.parseMovies.bind(this)));
-  }
 
   private parseMovies(movies: unknown[]) {
     return movies.flatMap((movie) => {

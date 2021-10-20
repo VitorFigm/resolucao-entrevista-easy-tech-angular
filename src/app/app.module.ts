@@ -8,7 +8,7 @@ import { AppComponent } from './app.component';
 import { TableComponent } from './components/table/table.component';
 import { HeaderComponent } from './components/header/header.component';
 import { LandingPageComponent } from './components/landing-page/landing-page.component';
-import moviesData from './data/json/kaggle-disney-movies.json';
+import { lazyLoadedData$ } from './data/json/lazy-loaded-data';
 import { MovieDTOJson } from './models';
 
 @NgModule({
@@ -19,7 +19,7 @@ import { MovieDTOJson } from './models';
     LandingPageComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, SharedModule],
-  providers: [{ provide: MovieDTOJson, useValue: { data: moviesData } }],
+  providers: [{ provide: MovieDTOJson, useValue: { data$: lazyLoadedData$ } }],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
